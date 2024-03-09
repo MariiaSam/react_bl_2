@@ -1,26 +1,40 @@
 import { Component } from "react";
-import styles from './main-menu.module.css'
+import styles from "./main-menu.module.css";
 
 class MainMenu extends Component {
-    constructor(props) {}
-      render() {
-    
-    return (
-        <ul className={styles.menu}>
-            <li>
-                <a className={styles.link} href="#">Link1</a>
-            </li>
-            <li>
-                <a className={styles.link} href="#">Link2</a>
-            </li>
-            <li>
-                <a className={styles.link} href="#">Link3</a>
-            </li>
-        </ul>
-        )
+  state = {
+    activeIndex: 0,
+  };
 
-}
-     
+  handleClick(idx) {
+    this.setState({
+        activeIndex: idx
+    })
 }
 
-export default MainMenu
+  render() {
+    const { items } = this.props;
+    const { activeIndex } = this.state;
+
+    const elements = items.map(({ id, text, href }, index) => (
+      <li key={id}>
+        <a
+          onClick={() => this.handleClick(index)}
+          className={ 
+            index === activeIndex
+              ? `${styles.link} ${styles.active}`
+              : styles.link
+          }
+          href={href}
+        >
+          {text}
+        </a>
+      </li>
+    ));
+    console.log(this.props.items);
+
+    return <ul className={styles.menu}>{elements}</ul>;
+  }
+}
+
+export default MainMenu;
