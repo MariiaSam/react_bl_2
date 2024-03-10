@@ -23,17 +23,23 @@ calcPercentage(keyName) {
 
     if (!total) {
         return 0
-    }
+    }     const value = this.state[keyName]
+    return Number(((value / total) * 100).toFixed(2))}
 
-    const value = this.state[keyName]
-    return Number(((value / total) * 100).toFixed(2))
+    leaveVote = (keyName) => {
+      this.setState(prevState => {
+          return {
+              [keyName]: prevState[keyName] + 1
+          }
+      })
+  //keyName - назва партії
 }
 
   render() {
     const { democrats, respub } = this.state;
 
     const buttonElements = Vote.voteOptions.map((name) => (
-      <button key={name}>{name}</button>
+      <button onClick={(() => this.leaveVote(name))} key={name}>{name}</button>
     ));
     
     const total = this.calcTotal();
