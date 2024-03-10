@@ -2,15 +2,28 @@ import { Component } from "react";
 import styles from "./main-menu.module.css";
 
 class MainMenu extends Component {
+  static defaultProps = {
+    items: [],
+  };
+
   state = {
     activeIndex: 0,
   };
 
   handleClick(idx) {
     this.setState({
-        activeIndex: idx
-    })
-}
+      activeIndex: idx,
+    });
+  }
+
+//   handleClick = () => {
+//     this.setState(prevState => {
+//         return {
+//          active: !prevState.active,
+//         }
+     
+//     });
+//   } 
 
   render() {
     const { items } = this.props;
@@ -20,7 +33,7 @@ class MainMenu extends Component {
       <li key={id}>
         <a
           onClick={() => this.handleClick(index)}
-          className={ 
+          className={
             index === activeIndex
               ? `${styles.link} ${styles.active}`
               : styles.link
