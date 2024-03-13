@@ -17,7 +17,7 @@ class MyBooksForm extends Component {
 //     author: "",
 //   };
 
-state = [...INITIAL_STATE]
+state = {...INITIAL_STATE}
 
   handlerChange = ({ target }) => {
     // e.target.value
