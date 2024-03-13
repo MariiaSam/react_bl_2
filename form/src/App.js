@@ -1,11 +1,9 @@
-import MyBooksForm from "./components/MyBooksForm/MyBooksForm";
-import MyBookList from "./components/BookList/MyBookList";
+import MyBooks from "./components/MyBooks/MyBooks";
 
 function App() {
   return (
     <div >
-      <MyBooksForm/>
-      <MyBookList/>
+      <MyBooks/>
     </div>
   );
 }

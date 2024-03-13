@@ -31,12 +31,18 @@ state = {...INITIAL_STATE}
 
   handlerSubmit = (e) => {
     e.preventDefault();
-
-    this.setState({
-        ...INITIAL_STATE
+    // this.setState({
+        // ...INITIAL_STATE
         // title: "",
         // author: "",
-    }) // обнулити стейт після відправвки форми, ResertForm
+    // обнулити стейт після відправвки форми, ResertForm
+      // }) 
+      this.props.onSubmit({...this.state});
+      this.reset();
+  }
+
+  reset() {
+      this.setState({...INITIAL_STATE});
     
   };
 
