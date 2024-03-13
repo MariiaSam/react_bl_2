@@ -15,6 +15,7 @@ class MyBooks extends Component {
         author: "Oleg",
       },
     ],
+    filter: '',
   };
 
   isDublicate({ title, author }) {
@@ -54,14 +55,55 @@ class MyBooks extends Component {
     // ... book - старі книги, до яких додаю нову
   }; //books - prevState
 
+  deleteBook = (id) => {
+    this.setState(({ books }) => {
+      const newBooks = books.filter((item) => item.id !== id);
+
+      return {
+        books: newBooks,
+      };
+    });
+  };
+
+  changeFitler = ({target})=> {
+    // console.log(target)
+    this.setState({
+        filter: target.value
+    })
+}
+
+getFilteredBooks() {
+    const {filter, books} = this.state;
+    if(!filter) {
+        return books;
+    }
+
+    const normalizedFilter = filter.toLowerCase();
+
+    const filteredBooks = books.filter(({title, author}) => {
+        const normalizedTitle = title.toLowerCase();
+        const normalizedAuthor = author.toLowerCase();
+
+        return (normalizedAuthor.includes(normalizedFilter) || normalizedTitle.includes(normalizedFilter))
+    });
+
+    return filteredBooks;
+}
+
   render() {
-    const { books } = this.state;
-    const { addBook } = this;
+    const { addBook, deleteBook, changeFitler } = this;
+    const books = this.getFilteredBooks();
+
 
     return (
       <div className={styles.wrapper}>
         <MyBooksForm onSubmit={addBook} />
-        <MyBookList items={books} />
+        <div className={styles.listWrapper}>
+        <input onChange={changeFitler} name="filter" placeholder="Search" />
+
+                    <MyBookList items={books} deleteBook={deleteBook} />
+
+        </div>
       </div>
     );
   }

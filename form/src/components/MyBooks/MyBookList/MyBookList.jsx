@@ -1,16 +1,14 @@
 import styles from "./my-book-list.module.css";
 
-const MyBookList = ({items}) => {
+const MyBookList = ({items, deleteBook}) => {
     const elements = items.map(({id, title, author})=> 
-    <li key={id}>Author: {author}. Title: {title}</li>
+    <li key={id}>Author: {author}. Title: {title}. <button onClick={() => deleteBook(id)} type="button">Delete</button></li>
   );
 
   return (
-    <div className={styles.wrapper}>
-      <ol>
+      <ol className={styles.list}>
             {elements}
       </ol>
-    </div>
   );
 };
 
