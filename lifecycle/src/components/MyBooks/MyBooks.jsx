@@ -14,7 +14,7 @@ class MyBooks extends Component {
 
   componentDidMount() {
     const books = JSON.parse(localStorage.getItem("my-books"));
-    if (books?.length) {
+    if (books?.length) { //(books && books.length)
         this.setState({
             books,
         })
