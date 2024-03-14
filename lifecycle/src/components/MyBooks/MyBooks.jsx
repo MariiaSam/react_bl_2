@@ -8,15 +8,25 @@ import styles from "./my-books.module.css";
 
 class MyBooks extends Component {
   state = {
-    books: [
-      {
-        id: nanoid(),
-        title: "Alex",
-        author: "Oleg",
-      },
-    ],
+    books: [],
     filter: '',
   };
+
+  componentDidMount() {
+    const books = JSON.parse(localStorage.getItem("my-books"));
+    if (books?.length) {
+        this.setState({
+            books,
+        })
+    }
+}
+
+componentDidUpdate(prevProps, prevState){
+  const {books} = this.state
+  if (prevState.books.length !== books.length) { //якщо довжина попередніх книг не дорівнює довжині теперішніх кних, то...
+     localStorage.setItem('my-books', JSON.stringify(this.state.books))
+}
+}
 
   isDublicate({ title, author }) {
     const { books } = this.state;
