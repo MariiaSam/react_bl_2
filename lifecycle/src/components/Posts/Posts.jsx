@@ -1,31 +1,60 @@
 import { Component } from "react";
-import axios from "axios";
 
+import { getAllPosts } from "../../api/posts";
 import styles from "./posts.module.css";
 
 class Posts extends Component {
   state = {
     posts: [],
     loading: false,
+    error: null,
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     this.setState({
-      loading: true,
-    });
-    axios.get("https://jsonplaceholder.typicode.com/posts").then(({ data }) => {
-      if (data?.length) {
+        loading: true,
+    })
+    
+    try {
+        const {data} = await getAllPosts();
         this.setState({
-          loading: false,
-          posts: data?.length ? data : [],
-        });
-      }
-    });
+            posts: data?.length ? data : [],
+        })
+    }
+    catch(error) {
+        this.setState({
+            error: error.message
+        })
+    }
+    finally {
+        this.setState({
+            loading: false,
+        })
+    }
+   
+
+
+    // getAllPosts()
+    //   .then(({ data }) => {
+    //     this.setState({
+    //       posts: data?.length ? data : [],
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     this.setState({
+    //       error: error.message,
+    //     });
+    //   })
+    //   .finally(() => {
+    //     this.setState({
+    //       loading: false,
+    //     });
+    //   });
   }
 
   render() {
     // const postsRequest = axios('https://jsonplaceholder.typicode.com/posts') поверне проміс, а не розмітку
-    const { posts, loading } = this.state;
+    const { posts, loading, error } = this.state;
     const elements = posts.map(({ id, title, body }) => (
       <li key={id} className={styles.item}>
         <h3>{title}</h3>
@@ -35,6 +64,7 @@ class Posts extends Component {
 
     return (
       <>
+        {error && <p className={styles.error}>{error}</p>}
         {loading && <p>...Loading</p>}
         {Boolean(elements.length) && (
           <ul className={styles.list}>{elements}</ul>
