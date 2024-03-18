@@ -1,9 +1,13 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: "https://jsonplaceholder.typicode.com/posts",
-})
+  baseURL: "https://jsonplaceholder.typicode.com/posts",
+});
 
-export const getAllPosts = ()=> {
-    return instance.get("/");
-}
+export const getAllPosts = () => {
+  return instance.get("/");
+};
+
+export const searchPosts = (q) => {
+  return instance.get(`/?=${q}`);
+};
