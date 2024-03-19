@@ -8,6 +8,14 @@ export const getAllPosts = () => {
   return instance.get("/");
 };
 
-export const searchPosts = (q) => {
-  return instance.get(`/?=${q}`);
-};
+export const searchPosts = (q, _page = 1) => {
+    // return instance.get(`/?q=${q}&_limit=6&_page=${_page}`)
+    
+    return instance.get("/", {
+        params: {
+            q,
+            _limit: 6,
+            _page,
+        }
+    })
+}

@@ -16,7 +16,7 @@ class PostsSearch extends Component {
 
     async componentDidUpdate(prevProps, prevState) {
         const { search } = this.state;
-        if (search) {
+        if (search && search !==prevState.search) {
             this.setState({
                 loading: true,
             });
