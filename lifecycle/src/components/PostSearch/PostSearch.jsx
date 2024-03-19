@@ -17,28 +17,35 @@ class PostsSearch extends Component {
     page: 1,
   };
 
-  async componentDidUpdate(prevProps, prevState) {
+  async componentDidUpdate(_, prevState) {
     const { search, page } = this.state;
     if (search && (search !== prevState.search || page !== prevState.page)) {
-      this.setState({
-        loading: true,
-      });
-      try {
+        this.fetchPosts();
+    }
+}
+
+async fetchPosts() {
+    const { search, page } = this.state;
+    try {
+        this.setState({
+            loading: true,
+        });
         const { data } = await searchPosts(search, page);
         this.setState(({ posts }) => ({
             posts: data?.length ? [...posts, ...data] : posts,
         }))
-      } catch (error) {
-        this.setState({
-          error: error.message,
-        });
-      } finally {
-        this.setState({
-          loading: false,
-        });
-      }
     }
-  }
+    catch (error) {
+        this.setState({
+            error: error.message
+        })
+    }
+    finally {
+        this.setState({
+            loading: false,
+        })
+    }
+}
 
   handlerSearch = ({ search }) => {
     this.setState({
