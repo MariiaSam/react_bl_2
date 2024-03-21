@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
+import { nanoid } from "nanoid";
 import styles from "./posts-search-form.module.css";
 
 const PostsSeachForm = ({onSubmit}) => {
@@ -31,14 +32,15 @@ const PostsSeachForm = ({onSubmit}) => {
           search: ""
       });
   }
+const searchId = useMemo(() => nanoid(), [])
 
   console.log("render")
 
   return (
       <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.fieldGroup}>
-              <label>Enter search phrase</label>
-              <input ref={inputRef} value={state.search} onChange={handleChange} required type="text" name="search" placeholder="Enter search phrase" />
+              <label htmlFor={searchId}>Enter search phrase</label>
+              <input id={searchId} ref={inputRef} value={state.search} onChange={handleChange} required type="text" name="search" placeholder="Enter search phrase" />
           </div>
           <button type="submit">Search</button>
       </form>

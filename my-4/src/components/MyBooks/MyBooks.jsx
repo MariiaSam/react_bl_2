@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, Component } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { nanoid } from "nanoid";
 
 import MyBookList from "./MyBookList/MyBookList";
@@ -41,7 +41,7 @@ const MyBooks = () => {
       return Boolean(dublicate);
   }
 
-  const addBook = (data) => {
+  const addBook = useCallback((data) => {
       if (isDublicate(data)) {
           return alert(`Book with ${data.title} and ${data.author} already in list`);
       }
@@ -54,13 +54,13 @@ const MyBooks = () => {
 
           return [...prevBooks, newBook];
       })
-  }
+  }, [])
 
-  const deleteBook = (id) => {
+  const deleteBook = useCallback((id) => {
       setBooks(prevBooks => prevBooks.filter(item => item.id !== id))
-  }
+  }, [])
 
-  const changeFitler = ({ target }) => setFilter(target.value);
+  const changeFitler = useCallback( ({ target }) => setFilter(target.value), []);
 
   const getFilteredBooks = () => {
       if (!filter) {

@@ -2,9 +2,9 @@
 // import ToggleButton from "./components/ToggleButton/ToggleButton";
 // import Vote from "./components/Vote/Vote";
 
-// import MyBooks from "./components/MyBooks/MyBooks";
+import MyBooks from "./components/MyBooks/MyBooks";
 // import Posts from "./components/Posts/Posts";
-import PostsSearch from "./components/PostSearch/PostSearch";
+// import PostsSearch from "./components/PostSearch/PostSearch";
 
 // import menuItems from './data/menu.json'
 
@@ -14,9 +14,9 @@ function App() {
    {/* <MainMenu items={menuItems}/>
    <ToggleButton text="Click me" type='button'/> */}
    {/* <Vote/> */}
-   {/* <MyBooks/> */}
+   <MyBooks/>
    {/* <Posts/> */}
-   <PostsSearch/>
+   {/* <PostsSearch/> */}
    </>
   );
 }

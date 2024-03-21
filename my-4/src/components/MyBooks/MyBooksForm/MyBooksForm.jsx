@@ -1,4 +1,4 @@
-import {useState, Component } from "react";
+import {useState, useMemo, memo, useCallback } from "react";
 import { nanoid } from "nanoid";
 
 import styles from "./my-books-form.module.css";
@@ -11,26 +11,26 @@ const INITIAL_STATE = {
   const MyBooksForm = ({onSubmit}) => {
     const [state, setState] = useState({...INITIAL_STATE});
 
-    const handleChange = ({target}) => {
+    const handleChange = useCallback(({target}) => {
         const {name, value} = target;
         setState({
             ...state,
             [name]: value,
         })
-    }
+    }, [])
 
     const handleSubmit = (e)=> {
         e.preventDefault();
-        onSubmit({...state});
+        onSubmit({...state}); 
         reset();
     }
 
-    const reset = () => {
+    const reset = useCallback(() => {
         setState({...INITIAL_STATE});
-    }
+    }, [])
 
-    const bookTitleId = nanoid();
-    const bookAuthorId = nanoid();
+    const bookTitleId = useMemo(() => nanoid(), [])
+    const bookAuthorId =  useMemo(() => nanoid(), [])
 
     const {title, author} = state;
         
@@ -124,4 +124,4 @@ const INITIAL_STATE = {
 //   }
 // }
 
-export default MyBooksForm;
+export default memo(MyBooksForm);
