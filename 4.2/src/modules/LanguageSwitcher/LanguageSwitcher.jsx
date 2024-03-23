@@ -1,9 +1,11 @@
-// import useLang from "../../hooks/useLang";
+import useLang from "../../hooks/useLang";
+
+
 
 import styles from "./LanguageSwitcher.module.css";
 
-const LanguageSwitcher = ({lang, toggleLang}) => {
-    // const {lang, toggleLang} = useLang();
+const LanguageSwitcher = () => {
+    const {lang, toggleLang} = useLang();
 
     return (
         <div>

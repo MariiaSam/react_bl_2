@@ -6,20 +6,20 @@ import Main from "./modules/Main/Main";
 import Footer from './modules/Footer/Footer';
 
 
-
+import LangProvider from './context/langContext';
 function App() {
-const [lang, setLang] = useState('ua')
 
-const toggleLang = () => setLang(prevLang => prevLang === 'ua' ? "en" : "ua")
+
 
 
   return (
     <div >
+     <LangProvider>
 
-        <Navbar lang={lang} toggleLang={toggleLang} />
-        <Main lang={lang}/>
-        <Footer lang={lang}/>
- 
+        <Navbar />
+        <Main/>
+        <Footer/>
+ </LangProvider>
     </div>
   );
 }

@@ -1,9 +1,10 @@
-// import useLang from "../../hooks/useLang";
+import useLang from "../../hooks/useLang";
 
 import locale from "./locale.json";
-
-const Main = ({lang }) => {
+const Main = () => {
     // const {lang} = useLang();
+
+    const {lang} = useLang()
     
     const title = locale.title[lang];
     const content = locale.content[lang];

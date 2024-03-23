@@ -1,4 +1,5 @@
-// import useLang from "../../hooks/useLang";
+import useLang from "../../hooks/useLang";
+
 
 import LanguageSwitcher from "../LanguageSwitcher";
 
@@ -6,8 +7,9 @@ import styles from "./Navbar.module.css";
 
 import locale from "./locale.json";
 
-const Navbar = ({lang, toggleLang})=> {
+const Navbar = ()=> {
     // const {lang} = useLang();
+    const {lang} = useLang()
 
     const menuTitle = locale.menu[lang];
 // 
@@ -15,7 +17,7 @@ const Navbar = ({lang, toggleLang})=> {
         <nav className={styles.navbar}>
             <a href="#">Logo</a>
             <div>{menuTitle}</div>
-            <LanguageSwitcher toggleLang={toggleLang} lang={lang} />
+            <LanguageSwitcher />
         </nav>
     )
 }
