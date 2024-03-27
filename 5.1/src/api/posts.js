@@ -18,4 +18,4 @@ export const searchPosts = (q, _page = 1) => {
             _page,
         }
     })
-}
+}  

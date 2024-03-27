@@ -10,7 +10,7 @@ const MainMenu = () => {
             </li>
 
             <li>
-                <NavLink className={styles.link} to='/post-search'>Posts Search</NavLink>
+                <NavLink className={styles.link} to='/posts-search'>Posts Search</NavLink>
             </li>
 
             <li>
