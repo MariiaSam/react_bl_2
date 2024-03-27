@@ -1,18 +1,19 @@
+import { Link } from 'react-router-dom'
+
 import styles from "./posts-search-list.module.css";
 
-const PostsSearchList = ({ showModal, items }) => {
-  const elements = items.map(({ id, title, body }) => (
+const PostsSearchList = ({ items }) => {
+  const elements = items.map(({ id, title }) => (
     <li
       key={id}
       
       className={styles.item}
     >
-      <h3>{title}</h3>
-      <p>{body}</p>
+      <Link to={`/posts/${id}`}>{title}</Link>
     </li>
   ));
 
-  return <ul className={styles.list}>{elements}</ul>;
+  return <ol className={styles.list}>{elements}</ol>;
 };
 
 export default PostsSearchList;
