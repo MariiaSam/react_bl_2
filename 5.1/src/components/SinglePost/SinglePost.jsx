@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { getPostById } from "../../api/posts";
 
@@ -12,6 +12,7 @@ const SinglePosts = () => {
 
     const {id} = useParams()
 
+    const navigate = useNavigate()
 useEffect(() => {
         const fetchPost = async () => {
             try {
@@ -30,11 +31,13 @@ useEffect(() => {
         fetchPost();
     }, []);
 
+    const goBack = () => navigate(-1)
 
 return (
     <div>
             {loading && <p>...Loading</p>}
             {error && <p>Error: {error}</p>}
+            <button onClick={goBack} type='button'>Go Back</button>
             {post && (
                 <>
                     <h2>{post.title}</h2>
