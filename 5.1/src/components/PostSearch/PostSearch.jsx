@@ -53,7 +53,7 @@ const PostsSearch = () => {
 
 //   const loadMore = () => setPage(prevPage => prevPage + 1);
 
-  const loadMore = () => setSearchParams({page: Number( page +1)})
+  const loadMore = () => setSearchParams({search, page: Number( page +1)})
 
 
   const isPosts = Boolean(posts.length);

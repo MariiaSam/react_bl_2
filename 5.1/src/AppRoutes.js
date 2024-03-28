@@ -6,22 +6,24 @@ import PostsSearchPage from "./pages/PostsSearchPage/PostsSearchPage";
 import ContactsPage from "./pages/ContactsPage/ContactsPage";
 import NotFounPage from "./pages/NotFoundPage/NotFoundPage";
 import SinglePostPage from "./pages/SinglePostPage/SinglePostPage";
-
+import SinglePostCommentsPage from "./pages/SinglePostCommentsPage/SinglePostCommentsPage";
 
 const AppRoutes = () => {
-return (
+  return (
     <>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-            <Route index element={HomePage}/>
-        <Route path="posts-search" element={<PostsSearchPage />} />
-        <Route path="posts/:id" element={<SinglePostPage />} />
-        <Route path="contacts" element={<ContactsPage />} />
-        <Route path="*" element={<NotFounPage />} />
-     </Route>  
-     </Routes>
+          <Route index element={HomePage} />
+          <Route path="posts-search" element={<PostsSearchPage />} />
+          <Route path="posts/:id" element={<SinglePostPage />}>
+            <Route path="comments" element={<SinglePostCommentsPage />} />
+          </Route>
+          <Route path="contacts" element={<ContactsPage />} />
+          <Route path="*" element={<NotFounPage />} />
+        </Route>
+      </Routes>
     </>
-    )
-}
+  );
+};
 
-export default AppRoutes
+export default AppRoutes;
