@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { useState, useEffect } from "react";
 
@@ -11,6 +11,7 @@ const Posts = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const location = useLocation()
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -29,7 +30,7 @@ const Posts = () => {
 
   const elements = posts.map(({ id, title }) => (
     <li key={id} className={styles.item}>
-      <Link to={`/posts/${id}`}>{title}</Link>
+      <Link to={`/posts/${id}`} state={{from: location}}>{title}</Link>
     </li>
   ));
 

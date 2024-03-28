@@ -10,8 +10,7 @@ const SinglePostPage = () => {
 return (
     <div>
       <SinglePosts/>
-      <Link to='comments'>Comments </Link>
-      <Outlet />
+   
 
     </div>
     )

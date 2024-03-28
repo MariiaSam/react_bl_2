@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation, Outlet, Link} from "react-router-dom";
 
 import { getPostById } from "../../api/posts";
 
@@ -11,8 +11,11 @@ const SinglePosts = () => {
     const [error, setError] = useState(null);
 
     const {id} = useParams()
+    const location = useLocation()
+    const from = location.state?.from || "/";
 
     const navigate = useNavigate()
+
 useEffect(() => {
         const fetchPost = async () => {
             try {
@@ -31,7 +34,7 @@ useEffect(() => {
         fetchPost();
     }, []);
 
-    const goBack = () => navigate(-1)
+    const goBack = () => navigate(from)
 
 return (
     <div>
@@ -42,6 +45,8 @@ return (
                 <>
                     <h2>{post.title}</h2>
                     <p>{post.body}</p>
+                    <Link to='comments' state={{from}}>Comments </Link>
+      <Outlet />
                 </>
             )}
         </div>
