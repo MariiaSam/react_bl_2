@@ -16,7 +16,7 @@ const MyBooks = () => {
 
     const isDublicate = ({ title, author }) => {
         const normalizedTitle = title.toLowerCase();
-        const normalizedAuthor = author.toLowerCase();
+          const normalizedAuthor = author.toLowerCase();
 
         const dublicate = books.find(item => {
             const normalizedCurrentTitle = item.title.toLowerCase();
