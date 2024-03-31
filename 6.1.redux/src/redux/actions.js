@@ -1,10 +1,23 @@
 import {nanoid} from 'nanoid'
 
-import { ADD_BOOK } from "./constans";
+import { ADD_BOOK, DELETE_BOOK } from "./constans";
 
-const addBook = (payload) => {
+export const addBook = (payload) => {
   return {
     type: ADD_BOOK,
-    payload,
+    payload: {
+    id: nanoid(),
+    ...payload
+    
+    } 
   };
 };
+
+
+export const deleteBook = (payload) => {
+  return {
+    type: DELETE_BOOK,
+    payload,
+    } 
+
+}

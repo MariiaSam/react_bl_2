@@ -22,7 +22,7 @@ const MyBooks = () => {
             const normalizedCurrentTitle = item.title.toLowerCase();
             const normalizedCurrentAuthor = item.author.toLowerCase();
             return (normalizedCurrentTitle === normalizedTitle && normalizedCurrentAuthor === normalizedAuthor);
-        })
+        })  
 
         return Boolean(dublicate);
     }

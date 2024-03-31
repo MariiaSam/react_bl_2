@@ -1,4 +1,4 @@
-import { ADD_BOOK } from "./constans";
+import { ADD_BOOK, DELETE_BOOK } from "./constans";
 
 const initialState = {
   books: [],
@@ -10,6 +10,12 @@ const reducer = (state = initialState, { type, payload }) => {
       const { books } = state;
       return {
         books: [...books, payload],
+      };
+
+    case DELETE_BOOK:
+      const newBooks = state.books.filter((item) => item.id !== payload);
+      return {
+        books: newBooks,
       };
     default:
       return state;
