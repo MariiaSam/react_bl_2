@@ -1,6 +1,6 @@
 import {nanoid} from 'nanoid'
 
-import { ADD_BOOK, DELETE_BOOK } from "./constans";
+import { ADD_BOOK, DELETE_BOOK, SET_FILTER } from "./constans";
 
 export const addBook = (payload) => {
   return {
@@ -19,5 +19,15 @@ export const deleteBook = (payload) => {
     type: DELETE_BOOK,
     payload,
     } 
+}
+
+export const setFilter = payload => {
+
+return {
+  typoe: SET_FILTER,
+  payload
 
 }
+
+}
+
