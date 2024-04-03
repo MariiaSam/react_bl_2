@@ -2,19 +2,28 @@ import { createAction } from "@reduxjs/toolkit";
 
 import {nanoid} from "nanoid";
 
-import { ADD_BOOK, DELETE_BOOK } from "./books-constants";
 
-export const addBook = payload => {
+export const addBook = createAction('books/addBook', data => {
     return {
-        type: ADD_BOOK,
         payload: {
-            id: nanoid(),
-            ...payload,
-        },
+        id: nanoid(),
+        ...data,
+        }
     }
-}
 
-const deleteBook = createAction('books/deleteBook')
+})
+
+// export const addBook = payload => {
+//     return {
+//         type: ADD_BOOK,
+//         payload: {
+//             id: nanoid(),
+//             ...payload,
+//         },
+//     }
+// }
+
+export const deleteBook = createAction('books/deleteBook')
 
 // export const deleteBook = payload => {
 //     return {
